@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤器</title>
+    <script src="./VueJs文件/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.9.0/moment.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>显示格式化的日期和时间</h1>
+        <p>{{date}}</p>
+        <h1>完整版</h1>
+        <p>{{date | dateString}}</p>
+        <h2>年月日</h2>
+        <p>{{date | dateString('YYYY--MM--DD')}}</p>
+        <p>{{date | dateString('HH:mm:ss')}}</p>
+    </div>
+    <script>
+        Vue.filter('dateString',function(value,format){
+            // 如果前面传了格式就用前面的 如果没传格式就用下面的
+            return moment(value).format(format || 'YYYY--MM--DD HH:mm:ss');
+        })
+        new Vue({
+            el:'#app',
+            data:{
+                date:new Date(),
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+    <script src="./VueJs文件/vue.js"></script>
+    <style>
+        .bounce-enter-active {
+            animation: bounce-in .5s;
+        }
+
+        .bounce-leave-active {
+            animation: bounce-in .5s reverse;
+        }
+
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="example-2">
+        <button @click="show = !show">Toggle show</button><br>
+        <transition name="bounce">
+            <p v-if="show" style="background-color: brown;display: inline-block;">Lorem ipsu.</p>
+        </transition>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#example-2',
+            data: {
+                show: true
+            },
+
+        })
+    </script>
+</body>
+
+</html>

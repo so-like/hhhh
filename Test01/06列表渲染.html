@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+    <script src="./VueJs文件/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>列表渲染v-for数组遍历</h1>
+        <ul >
+            <li v-for="(p,index) in persons" :key="index" style="list-style: none;">
+                --{{p.name}}--{{p.age}}--
+                --<button @click="deleteP(index)">删除</button>--
+                --<button @click="updateP(index,{name:'小猪',age:5})">增加</button>--
+            </li>
+        </ul>
+        <h1>列表渲染v-for对象遍历</h1>
+        <ul>
+            <li v-for="(value,key) in persons[1]" ::key="key">
+                --{{value}}--{{key}}
+            </li>
+        </ul>
+
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                persons:[
+                    {name:"小刘",age:18},
+                    {name:"小王",age:19},
+                    {name:"小马",age:20},
+                    {name:"小张",age:21},
+                    {name:"小唐",age:22},
+                ]
+            },
+            methods: {
+                deleteP(index){
+                    // vue内部是对数组的方法进行了包装 1.将原方法重写 2.更新视图
+                    this.persons.splice(index,1)
+                },
+                updateP(index,newValue){
+                    // 这条代码没有改变persons数组，所以数值更新了，但是视图界面并没有更新
+                    // this.persons[index] = newValue
+
+                    this.persons.splice(index,1,newValue);
+                    // splice可以删除 增添 修改
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义指令</title>
+    <script src="./VueJs文件/vue.js"></script>
+</head>
+<body>
+    <!-- v-upper-text 功能类似于v-text是全局的 -->
+    <!-- v-lower-text 功能类似于v-text是局部的 -->
+    <div id="app1">
+        <p v-upper-text="msg1"></p>
+        <p v-lower-text="msg1"></p>
+    </div>
+    <div id="app2">
+        <p v-upper-text="msg2"></p>
+        <p v-lower-text="msg2"></p>
+    </div>
+
+    <script>
+        // 定义全局指令或注册全局指令
+        // el为指令所在的标签对象 而binding是一个指令对象 而他的value值对应的就是msg1
+        Vue.directive('upper-text',function(el,binding){
+            console.log(el,binding);
+            // 将选定标签的内容之更换为msg并将它转换为大写
+            el.textContent = binding.value.toUpperCase()
+        })
+        new Vue({
+            el:'#app1',
+            data:{
+                msg1:'WHY I do it'
+            },
+            // 注册局部指令 将内容全部更换为小写
+            // 局部指令只在#app1中有效
+            directives:{
+                'lower-text':(el,binding)=>{
+                    console.log("已全部更换为小写");
+                    el.textContent = binding.value.toLowerCase()
+                }
+            }
+        })
+        new Vue({
+            el:'#app2',
+            data:{
+                msg2:'WHO MATCH is it'
+            },
+            directives:{
+                'lower-text':(el,binding)=>{
+                    console.log("已全部更换为小写");
+                    el.textContent = binding.value.toLowerCase()
+                }
+            }
+        })
+    </script>
+</body>
+</html>

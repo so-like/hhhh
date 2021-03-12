@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue生命周期函数</title>
+    <script src="./VueJs文件/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="destroyVM">点我提交</button>
+        <p v-show="isShow">我是一行测试文本</p>
+    </div>
+    <script>
+        // Mounted()主要做定时器 发送ajax等异步任务
+        // beforeDestroy() 主要做清除定时器 以及收尾工作
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                isShow:true
+            },
+
+            // 初始化阶段--------------------------------------------------------------
+            beforeCreate() {
+                console.log('beforeCreate()')
+            },
+            created() {
+                console.log('created()')
+            },
+
+            beforeMount() {
+                console.log('beforeMount()')
+            },
+            mounted() { //初始化显示之后就会立即调用 只调用一次
+                // 设置一个循环定时器 放到挂载函数中
+                console.log('mounted()');
+                this.Interval = setInterval(() => {
+                console.log("*************");
+                this.isShow = !this.isShow
+            }, 1000)
+            },
+
+            // 更新阶段------------------------------------------------------------------
+            beforeUpdate() {
+                console.log("beforeUpdate()")
+            },
+            updated() {
+                console.log("Update()")
+            },
+
+
+            // 销毁阶段------------------------------------------------------------------
+            // 销毁前要干的事 只调用一次
+            beforeDestroy() {
+                console.log('beforeDestroy()');
+                // 销毁定时器 不然会造成内存内泄漏
+                clearInterval(this.Interval);
+            },
+            destroyed() {
+                console.log("destroyed()")
+            },
+            methods: {
+                destroyVM(){
+                    // 销毁vm对象
+                    this.$destroy()
+                }
+            },
+        })
+    </script>
+</body>
+</html>

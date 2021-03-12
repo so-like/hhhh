@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单数据自动收集(用的是v-model)</title>
+    <script src="./VueJs文件/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <form action="#" @submit.prevent="submitHandel">
+            <span>姓名 :</span>
+            <input type="text" v-model="name"><br>
+            <span>年龄 :</span>
+            <input type="text" v-model="age"><br>
+            <span>性别 :</span>
+            <input type="radio" id="Man" value="女" v-model="sex">
+            <label for="Man">女</label>
+            <input type="radio" id="man" value="男" v-model="sex">
+            <label for="man">男</label><br>
+
+            <span>兴趣爱好 :</span>
+            <input type='checkbox' id="basket" value="basket" v-model="likes">
+            <label for="basket">篮球</label>
+            <input type='checkbox' id="foot" value="foot" v-model="likes">
+            <label for="foot">足球</label>
+            <input type='checkbox' id="pingpang" value="pingpang" v-model="likes">
+            <label for="pingpang">乒乓球</label>
+            <input type='checkbox' id="ym" value="ym" v-model="likes">
+            <label for="ym">羽毛球</label><br>
+
+            <span>内容</span>
+            <select name="text" v-model="cityId">
+                <option value="">未选择</option>
+                <option :value="city.id" v-for="(city,index) in citys" :key="index">{{city.name}}</option>
+            </select>
+            <br>
+            <br>
+            <br>
+
+            <span>简绍</span><br>
+            <textarea name="" id="" cols="30" rows="10" v-model="msg"></textarea><br>
+            <input type="submit" value="点击注册">
+
+        </form>
+        
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                name:'',
+                age:'',
+                sex:'女',
+                likes:['ym',],
+                citys:[{id:1,name:"bj"},{id:2,name:"sh"},{id:3,name:"gd"}],
+                cityId:"3",
+                msg:''
+            },
+            methods: {
+                submitHandel(){
+                    console.log(this.name,this.age,this.sex,this.likes,this.cityId,this.msg)
+                }
+            },
+        })
+    </script>
+</body>
+</html>

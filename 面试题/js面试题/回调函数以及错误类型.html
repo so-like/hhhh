@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1.同步回调函数 等一个全部调用完才会执行下边的
+        // let arr = [0,1,2,3]
+        // arr.forEach(key =>{
+        //     console.log(key);
+        // })
+        // console.log('foreach()执行之后');
+
+        // 2.异步回调函数  程序会将一些方法挂起 然后继续向下执行
+        // setTimeout(()=>{
+        //     console.log('我是函数内部');
+        // },0)
+        // console.log('我是setTime()之后执行的');
+
+
+        // 错误类型 error
+
+        // 处理 捕获异常 try ......catch
+        // 抛出错误 throw error
+
+
+        // ReferenceError  引用类型错误
+        // console.log(a);
+        // console.log('+++++++'); 没有捕获异常 下面的代码不会执行  ReferenceError: a is not defined
+
+
+        // SyntaxError  语法错误
+        // const a = """"   SyntaxError: Unexpected string 语法错误
+
+        // TypeError   类型错误
+        // let b = null
+        // console.log(b.name);  TypeError: Cannot read property 'name' of null at
+
+        // RangeError  数值不在其范围内
+        // 函数声明的3种方法
+        // var f1 = new Function()
+
+        // var f2 = function(){
+        //     console.log('ok');
+        // }
+
+        // function f3(){
+        //     console.log('ok');
+        // }
+
+        function fun1(){
+            fun1()
+        }
+        fun1()  
+        // Maximum call stack size exceeded 进入死循环 它也有次数限制
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

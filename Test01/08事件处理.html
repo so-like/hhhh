@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件处理</title>
+    <script src="./VueJs文件/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h1>绑定监听</h1>
+        <button @click="test">test1</button>
+        <button @click="test2('小陈')">test2</button>
+        <button @click="test3">test3</button>
+        <button @click="test4('abc')">test4</button>
+        <h1>事件修饰符</h1>
+        <div style="width: 200px;height:200px;background-color:aqua" @click="test5">
+            <!-- @click.stop阻止事件冒泡事件 -->
+            <div style="width: 100px;height:100px;background-color:red" @click.stop="test6"></div>
+        </div>
+        <a href="http://wwww.baidu.com" @click.prevent="test7">去百度</a>
+
+        <h1>按键修饰符</h1>
+        <input type="text" @keyup.p="test8">
+    </div>
+    
+
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                
+            },
+            methods: {
+                test(){
+                    alert("test1")
+                },
+                test2(msg){
+                    alert(msg)
+                },
+                test3(event){
+                    alert(event.target.innerHTML)
+                },
+                test4(value,$event){
+                    alert(value + '----' + event.target.innerHTML)
+                },
+                test5(){
+                    alert("out")
+                },
+                test6(event){
+                    // 阻止事件冒泡
+                    // event.stopPropagation();
+                    alert("inner")
+                },
+                test7(event){
+                    // 阻止默认事件
+                    // event.preventDefault();
+                    alert("点击了")
+                },
+                test8(event){
+                    // 获取输入框输入的值
+                    // if(event.keyCode == 65){
+                    //     alert(event.target.value + ' ' + event.keyCode)
+                    // }
+                    alert(event.target.value + ' ' + event.keyCode)
+                }
+
+            },
+        })
+    </script>
+</body>
+</html>

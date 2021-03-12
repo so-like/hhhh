@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const obj = {
+            FirstName:'A',
+            LastName:'B'
+        }
+        Object.defineProperty(obj,'FullName1',{
+            // 动态计算属性值得变化得到属性值
+            get(){
+                return this.FirstName + '-' + this.LastName
+            },
+            set(value){
+                // 定义一个names来接收
+                const names = value.split('-');
+                this.FirstName = names[0];
+                this.LastName = names[1];
+            }
+        })
+        console.log(obj.FullName1);
+        obj.FirstName = 'c';
+        obj.LastName = 'd';
+        console.log(obj.FullName1);
+        // Object.defineProperty(obj,'FullName',{
+        //     configurable:true, //是否可以重新定义
+        //     writable:true, //是否可以重写
+        //     value:'p', //设置初始值
+        //     enumerable:true  //是否可以枚举
+        // })
+        // obj.FullName = 'l'
+        // console.log(obj.FullName);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

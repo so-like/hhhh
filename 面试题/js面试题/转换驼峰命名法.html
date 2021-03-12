@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function f1(p) {
+        //将4个元素用-分开
+        var foo = p.split('-')
+        // 
+        for (var i = 0; i < foo.length; i++) {
+            // charAt选取第一个元素toUpperCase()使其大写 substr(截取开始一下标，截取结束下标)
+            foo[i] = foo[i].charAt(0).toUpperCase() + foo[i].substr(1, foo[i].length - 1);
+        }
+        // 将某个数组转换为字符串与split用法相反
+        console.log(foo.join(''));
+    }
+    f1('get-element-by-id')
+
+</script>
+
+<body>
+
+</body>
+
+</html>

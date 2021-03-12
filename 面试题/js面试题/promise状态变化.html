@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const p = new Promise((resolve,reject)=>{
+            //1. resolve(1) 由pendding => resolved状态
+            //2. reject(2)  有pendding => reject状态
+            //3. 抛出异常 来改变promise的状态 
+            // throw new Error('发生了错误') //reason为抛出的异常
+            // throw 5  这时候promise的状态就会变成5  (失败状态)
+            throw 6
+        })
+        console.log(p);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

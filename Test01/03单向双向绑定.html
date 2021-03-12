@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue单向双向绑定</title>
+    <script type="text/javascript" src="./VueJs文件/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        请输入姓: <input type="text" id="input" placeholder="firstName" v-model="firstName"><br>
+        请输入名: <input type="text" id="input" placeholder="lastName" v-model="lastName"><br>
+        姓名1(单向): <input type="text" id="input" placeholder="Name1" v-model="Name1"><br>
+        姓名2(单向): <input type="text" id="input" placeholder="Name2" v-model="Name2"><br>
+        姓名3(双向): <input type="text" id="input" placeholder="Name3" v-model="Name3">
+    </div>
+    
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                firstName:"王",
+                lastName:"二小",
+                Name2:"王 二小"
+            },
+            // 计算属性存在缓存，多次读取值执行一次getter计算
+            computed:{
+
+                // computed在初始化的时候会调用一次 当内部属性发生变化时会自动调用
+                Name1(){
+                    // 计算属性中的一个方法 方法的返回值作为属性值
+                    console.log('Name1()')
+                    return this.firstName + ' ' + this.lastName
+                },
+                Name3:{
+                    // 当需要读取当前属性值时回调
+                    get(){
+                        return this.firstName + ' ' + this.lastName
+                    },
+                    // 当前属性值发生改变时回调更新相关属性操作
+                    set(value){
+                        const name = value.split(' ');
+                        this.firstName = name[0];
+                        this.lastName = name[1]
+                    }
+                }
+            },
+            watch:{
+                firstName:function(value){
+                    // this就是vue的实例对象vm
+                    console.log(this);
+                    this.Name2 = value + ' ' + this.lastName
+                }
+            }
+        })
+    </script>
+</body>
+</html>

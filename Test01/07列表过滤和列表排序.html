@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤和排序</title>
+    <script src="./VueJs文件/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>列表过滤</h1>
+        <input type="text" v-model="searchName">
+        <ul>
+            <!-- 对所输入的数值进行检索 -->
+            <li v-for="(p,index) in filterPersons" :key="key" style="list-style: none;">
+                --{{value}}--{{p.name}}--{{p.age}}--
+            </li>
+        </ul>
+        <button @click="setOrderType(1)">年龄升序</button>
+        <button @click="setOrderType(2)">年龄降序</button>
+        <button @click="setOrderType(0)">原本顺序</button>
+
+        <h1>列表排序</h1>
+    </div>
+   
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                searchName:'',
+                orderType:0, //0代表原本 1代表升序 2代表降序
+                persons:[
+                    {name:"小刘",age:18},
+                    {name:"小王",age:19},
+                    {name:"小马",age:20},
+                    {name:"小张",age:21},
+                    {name:"Aob",age:22},
+                ]
+            },
+            computed:{
+                filterPersons(){
+                    // 首先获取你要搜索的值，和已有定义的值
+                    // 用来获取data模块定义的值
+                    const {searchName,persons,orderType} = this;
+                    // 定义一个最终的数组
+                    let fPersons;
+                    // 比较办法 比较输入的值在原有的数组中的下标如果有就会返回下标 如果没有就返回-1
+                    fPersons = persons.filter(p => p.name.indexOf(searchName)>=0);
+
+                    // 排序  0代表原本 1代表升序 2代表降序
+                    if(orderType!==0){
+                        fPersons.sort(function(p1,p2){
+                            if(orderType==2){
+                                return p2.age-p1.age
+                            }else{
+                                return p1.age-p2.age
+                            }
+                            
+                        })
+                    }
+                    return fPersons;
+                }
+                
+            },
+            methods: {
+                setOrderType(orderType){
+                    // 点击的时候传了一个orderType过来 把这个orderType传给this.orderType
+                    this.orderType = orderType;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

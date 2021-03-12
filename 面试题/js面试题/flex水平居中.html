@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* 子绝父相 */
+        .box{
+            width: 500px;
+            height: 500px;
+            background-color: gray;
+            /* position: relative; */
+             /* flex水平为主轴 垂直为辅轴 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            position: absolute;
+           
+/* **************************************1111 */
+            /* left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto; */
+
+
+/* *************************************2222 */
+/* 各占一半则右上的这个点就是父元素的水平中点 */
+            /* top: 50%;
+            left:50%; */
+            /* 右下为正 左上为负 */
+            /* transform: translate(-50%,-50%); */
+            /* margin-left: -100px;
+            margin-top: -100px; */
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1"></div>
+    </div>
+</body>
+</html>

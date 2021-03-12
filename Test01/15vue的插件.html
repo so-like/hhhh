@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue的插件</title>
+    <script src="./VueJs文件/vue.js"></script>
+    <script src="./15vue的插件库.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-upper-text='msg'></p>
+    </div>
+    <script>
+        // 声明使用插件 内部会执行myPlugin.install(vue)
+        Vue.use(MyPlugin)
+        // 调用插件的全局对象方法
+        Vue.myGlobalMethods();
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'i like YOU someBody'
+            },
+        })
+        // 调用插件的实例对象方法
+        vm.$myMethod();
+    </script>
+</body>
+</html>

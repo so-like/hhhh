@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 定义一个旧数组
+        var arr=[1,2,3,5,5,6,6,7,8,8,9,9]
+        // 定义一个新数组
+        var t=[]
+        // 让新数组的第一个默认等于就数组的第一个元素
+        t[0]=arr[0]
+        // 然后循环遍历旧数组和新数组比较 旧数组
+        for(var i=0;i<arr.length;i++){
+            // 新数组
+            for(var j=0;j<t.length;j++){
+                // 如果第一个数与旧数组中的第一个数相同那么就直接退出循环
+                if(t[j]==arr[i]){
+                    break
+                }
+                // j是新数组的最后一个下标 如果判断到最后一个不相同 那么就添加该元素
+                if(j == t.length-1){
+                    t.push(arr[i])
+                }
+            }
+        }
+        console.log(t);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

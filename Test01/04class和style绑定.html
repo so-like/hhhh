@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./VueJs文件/vue.js"></script>
+    <style>
+        .aClass{
+            color: red;
+        }
+        .bClass{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>class绑定</h1>
+        <p :class="a">我是一行文字(字符串)</p>
+        <p :class="{aClass:true,bClass:false}">我是一行文字(对象)</p>
+        <p :class="{aClass:isA,bClass:isB}">我是一行文字feffe(对象)</p>
+
+        <h1>style绑定</h1>
+        <p :style='{color: lol,fontSize:size + "px"}'>我是通过style绑定的样式</p>
+        <button @click="update">我是一个按钮</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                a:"aClass",
+                b:'bClass',
+                isA:true,
+                isB:false,
+                lol:'red',
+                size:20
+            },
+            methods: {
+                update(){
+                    this.a = "bClass",
+                    this.lol = 'green',
+                    this.size = 40
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>

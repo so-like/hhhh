@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过渡和动画</title>
+    <script src="./VueJs文件/vue.js"></script>
+    <style>
+        /* 显示和隐藏的过渡效果 */
+        .fade1-enter-active,.fade1-leave-active{
+            transition: opacity 1s;
+        }
+        /* 隐藏时的样式 */
+        .fade1-enter,.fade1-leave-to{
+            opacity: 0;
+        }
+        .fade2-enter-active{
+            transition: all 1s;
+        }
+        .fade2-leave-active{
+            transition: all 3s;
+            
+        }
+        /* 设置隐藏时的样式 */
+        .fade2-enter,.fade2-leave-to{
+            opacity: 0;
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body>
+    <div id="app1">
+        <button @click="isShow=!isShow">按钮啊111</button>
+        <transition name="fade1">
+        <p v-show="isShow" class="fade1-enter-to">我是一行测试文字</p>
+        </transition>
+    </div>
+
+    <div id="app2">
+        <button @click="isShow=!isShow">按钮222</button>
+        <transition name="fade2">
+        <p v-show="isShow" class="fade2-enter-to">我是一行测试文字</p>
+        </transition>
+    </div>
+
+    <script>
+        // 实例化第一个vue对象
+        const vm1 = new Vue({
+            el:'#app1',
+            data:{
+                isShow:true,
+            },
+        })
+        // 实例化第二个vue对象
+        const vm2 = new Vue({
+            el:'#app2',
+            data:{
+                isShow:true
+            },
+        })
+    </script>
+</body>
+</html>

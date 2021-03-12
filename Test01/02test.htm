@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据绑定</title>
+    <script type="text/javascript" src="./VueJs文件/vue.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <h2>大框号</h2>
+        <p>1</p>
+        <p>{{msg}}</p>  
+        <!-- 相当于innerHtml -->
+        <p v-html="msg"></p> 
+        <!-- 相当于textContent -->
+        <p v-text="msg"></p> 
+        <p>2</p>
+
+        <!-- *******************指令一强制数据绑定 -->
+        <h2>指令一强制数据绑定</h2>
+        <img src="imageUrl">
+        <!-- v-bind可以简写为: -->
+        <img v-bind:src="imageUrl">
+
+        <h2>指令二绑定事件监听</h2>
+        <button @click="speak">点我一下</button>
+        <!-- 简写@ -->
+        <button v-on:click="speak2(msg)">点我一下22</button>
+
+    </div>
+    
+    
+</body>
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data:{
+            msg:'<a href="http://www.baidu.com">我是一条连接</a>',
+            imageUrl:"https://cn.vuejs.org/images/logo.png",
+        },
+        methods: {
+            speak(){
+                alert("你好世界")
+            },
+            // 也可以给函数传个值
+            speak2(result){
+                alert(result)
+            }
+        },
+    })
+</script>
+</html>

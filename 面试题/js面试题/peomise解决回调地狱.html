@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1.promise的优势在于指定回调函数的方式更加灵活 传统的回调函数必须在异步任务之前设置 
+        // 而promise设置回调函数既可以在异步任务启动之前也可以在异步任务启动之后
+
+        // 2.promise解决回调地狱 什么是回调地狱 就是几个异步回调函数嵌套使用 回调函数嵌套调用的时候是不便于阅读和处理的
+        // 相当于3个异步任务 第二个任务是以第一个任务的结果为条件的 第三个任务的条件是以第二个任务的结果 也就是多个任务串联
+
+        // promise解决回调地狱++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        doSomething()
+            .then(function (result) {
+                return doTwo(result)
+            }).then(function (newResult) {
+                return doThird(newResult)
+            }).then(function (finalResult) {
+                console.log('最终执行结果' + finalResult);
+
+            }).catch(callback('统一处理异常'))
+
+
+        // async/await 最终解决回调地狱++++++++++++++++++++++++++++++++++++++++++++++++++++
+        async function request() {
+            try {
+                // 解决回调函数
+                const result = await doSomething()
+                const newResult = await doTwo()
+                const finalResult = await doThird()
+                console.log('最终执行结果' + finalResult);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        request()
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

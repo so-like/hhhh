@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // promise是一个构造函数 promise用来封装一个异步操作并且获取其值 是用来解决js中异步编程的一个方案
+        // 它有三种状态 pendding resolved rejected  只能由pendding变为其他两种 而且promise的状态只会改变一次
+
+        // 创建爱你一个promise对象
+        const p = new Promise((resolve,reject)=>{
+            // 1.执行异步操作
+            setTimeout(()=>{
+                var time = Date.now()
+                if(time%2===1){
+                    // 判断成功还是失败
+                    resolve('成功的数据time=' + time)
+                }else{
+                    reject('失败的数据time=' + time)
+                }
+            },1000)
+
+        })
+        p.then(
+            value =>{//接收到成功的数据     //onrResolved
+                console.log('成功的回调',value);
+            },
+            reason =>{//接收到失败的数据     //onRejected
+                console.log('失败的回调',reason);
+            }
+        )
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 执行器中有两个函数
+        new Promise((resolve,reject)=>{
+            // 执行异步任务
+            setTimeout(() => {
+                // 成功调用resolve()方法
+                // resolve('执行成功1')
+                // 失败调用reject()方法
+                reject('执行失败2')
+            }, 1000)
+        }).then(
+            value =>{
+                console.log('onResolve()' + value);
+            }
+        ).catch(
+            reason =>{
+                console.log('onReject()' + reason);
+            }
+        )
+
+
+
+        // 创建一个值为1的promise对象
+        const p1 = new Promise((resolve,reject)=>{
+            resolve(1)
+        })
+        const p2 = Promise.resolve(3)
+        const p3 = Promise.reject(4)
+        p1.then(value =>{console.log(value);})
+        p2.then(value =>{console.log(value);})
+        p3.then(null,reason =>{console.log(reason);})
+
+// ++++++++++++++++++++++promise的all方法
+        const pall = Promise.all([p1,p2,p3])
+        pall.then(
+            values =>{
+                // 和数组上面的对应并不是谁先执行谁在前面
+                console.log('all onResolved()' + values);
+            },
+            reason =>{
+                // 因为p3为reject 所以导致整体失败 所以整体打印的失败原因就为4
+                console.log('all onRejected()' + reason); //4
+            }
+        );
+// ++++++++++++++++++++++++++++promise的race方法 race竞速也就是比赛
+        const pRace = Promise.race([p1,p2,p3])
+        pRace.then(
+            values =>{
+                // 和数组上面的不对应谁先执行完name结果就是谁
+                console.log('race onResolved()' + values);
+            },
+            reason =>{
+                console.log('race onReject()' + reason); 
+            }
+        );
+
+
+
+// 总结 all方法和race方法的区别 all方法是和数组里的执行顺序相同 
+// 而race方法和数组里的方法不同谁先执行完谁的状态就会被保存
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

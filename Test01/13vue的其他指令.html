@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue其他指令</title>
+    <script src="./VueJs文件/vue.js"></script>
+    <style>
+        /* 属性选择器 */
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <p ref="content">我是p里的内容</p>
+        <button @click='hit'>点击获取</button>
+        <!-- <p v-text='msg'>我是v-clock测试文本</p> -->
+        <p v-clock>{{msg}}</p>
+    </div>
+    <script>
+        alert("kkkkkkk")
+        new Vue({
+            el:'.app',
+            data:{
+                msg:"哈哈哈哈哈"
+            },
+            methods: {
+                hit(){
+                    alert(this.$refs.content.textContent)
+                }
+            },
+        })
+    </script>
+</body>
+</html>
