@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            overflow: hidden;
+        }
+        .father{
+            width: 100%;
+            margin: 0 200px;
+        }
+        .left,.right{
+            width:200px;
+            background-color: khaki;
+            min-height: 200px;
+        }
+        .center{
+            width: 100%;
+            min-height: 400px;
+            background-color: lawngreen;
+        }
+        .left,
+        .right,
+        .center{
+            float: left;
+        }
+        .left{
+            position: relative;
+            margin-left: -100%;
+            left: -200px;
+        }
+        .right{
+            margin-right: -200px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="father clearfix">
+        <div class="center"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣杯布局</title>
+    <style>
+        /* html,
+        body {
+            overflow: hidden;
+        } */
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            display: flex;
+            justify-content: space-between;
+            height: 100px;
+        }
+
+        .left,
+        .right {
+            /* flex为1表示固定flex 1  1 auto 也等于flex 1 1 0 */
+            flex: 0 0 200px;
+            height: 400px;
+            background-color: lawngreen;
+        }
+
+        .center {
+            /* flex参数表示宽高 */
+            flex: 1;
+            min-height: 200px;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

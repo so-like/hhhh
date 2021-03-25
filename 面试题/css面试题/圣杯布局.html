@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣杯布局</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .head,.footer{
+            width: 100%;
+            height: 100px;
+            background-color: orange;
+        }
+        .box{
+            overflow: hidden;
+            padding: 0 200px;
+        }
+        #center{
+            background-color: lightgreen;
+            height: 300px;
+            width: 100%;
+        }
+        #left{
+            width: 200px;
+            height: 100px;
+            background-color: lightsalmon;
+        }
+        #right{
+            width: 200px;
+            height: 100px;
+            background-color: magenta;
+        }
+        .clu{
+            float: left;
+        }
+
+        #left{
+            /* 向左拖拽一个center的长度 */
+            margin-left: -100%;
+            position: relative;
+            right: 200px;
+        }
+        #right{
+            /* 相当于right不占宽度name它就移上去了 */
+            margin-right: -200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="head"><p>头</p></div>
+    <div class="box">
+        <div id="center" class="clu"><p>中</p></div>
+        <div id="left" class="clu"><p>左</p></div>
+        <div id="right" class="clu"><p>右</p></div>
+    </div>
+    <div class="footer"><p>尾</p></div>
+</body>
+</html>
